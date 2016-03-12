@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.fyber.android.challenge.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <EditText
+            android:paddingTop="20px"
+            android:id="@+id/uidET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="uid"
+            android:text="" />
+        <EditText
+            android:paddingTop="20px"
+            android:id="@+id/apiKeyET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="apikey"
+            android:text="" />
+        <EditText
+            android:paddingTop="20px"
+            android:id="@+id/appIdET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="appid"
+            android:text="" />
+        <EditText
+            android:paddingTop="20px"
+            android:id="@+id/pub0ET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="pub0"
+            android:text="" />
+    <Button
+        android:paddingTop="10px"
+        android:id="@+id/load_offers_button"
+        android:text="Get Offers"
+        android:cursorVisible="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/offers_listview"
+            />
+
+        <TextView android:id="@+id/empty_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No Offers" />
+
+    </LinearLayout>
+</RelativeLayout>
