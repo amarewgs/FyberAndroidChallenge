@@ -48,35 +48,37 @@ import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, OffersPullAsyncTask.OffersLoadedCallback {
 
-    private static final String FYBER_OFFERS_URL = "http://api.fyber.com/feed/v1/offers.json";
+    public static final String FYBER_OFFERS_URL = "http://api.fyber.com/feed/v1/offers.json";
 
-    private static final String UID_PARAM = "uid";
-    private static final String API_KEY_PARAM = "apikey";
-    private static final String APPID_PARAM = "appid";
-    private static final String PUB0_PARAM = "pub0";
-    private static final String HASH_KEY_PARAM = "hashkey";
+    public static final String UID_PARAM = "uid";
+    public static final String API_KEY_PARAM = "apikey";
+    public static final String APPID_PARAM = "appid";
+    public static final String PUB0_PARAM = "pub0";
+    public static final String HASH_KEY_PARAM = "hashkey";
 
-    private static final String DEVICE_ID_PARAM = "device_id";
-    private static final String IP_PARAM = "ip";
-    private static final String PAGE_PARAM = "page";
-    private static final String PS_TIME_PARAM = "ps_time";
-    private static final String TIMESTAMP_PARAM = "timestamp";
+    public static final String DEVICE_ID_PARAM = "device_id";
+    public static final String IP_PARAM = "ip";
+    public static final String PAGE_PARAM = "page";
+    public static final String PS_TIME_PARAM = "ps_time";
+    public static final String TIMESTAMP_PARAM = "timestamp";
 
-    private static final String LOCALE_PARAM = "locale";
-    private static final String LOCALE_PARAM_VALUE = "DE";
+    public static final String LOCALE_PARAM = "locale";
+    public static final String LOCALE_PARAM_VALUE = "DE";
 
-    private static final String API_KEY_PARAM_TEST = "1c915e3b5d42d05136185030892fbb846c278927";
+    public static final String API_KEY_PARAM_TEST = "1c915e3b5d42d05136185030892fbb846c278927";
+    public static final String UID_PARAM_TEST = "spiderman";
+    public static final String APPID_PARAM_TEST = "2070";
 
-    private static final String DEVICE_ID_PARAM_TEST = "2b6f0cc904d137be2e1730235f5664094b831186";
-    private static final String IP_PARAM_TEST = "109.235.143.113";
-    private static final String PAGE_PARAM_TEST = "1";
-    private static final String PS_TIME_PARAM_TEST = "1312211903";
-    private static final String PUB0_PARAM_TEST = "campaign2";
-    private static final String TIMESTAMP_PARAM_TEST = "1312553361";
+    public static final String DEVICE_ID_PARAM_TEST = "2b6f0cc904d137be2e1730235f5664094b831186";
+    public static final String IP_PARAM_TEST = "109.235.143.113";
+    public static final String PAGE_PARAM_TEST = "1";
+    public static final String PS_TIME_PARAM_TEST = "1312211903";
+    public static final String PUB0_PARAM_TEST = "campaign2";
+    public static final String TIMESTAMP_PARAM_TEST = "1312553361";
 
 
-    private static final String PARAMETERS_SEPARATOR = "&";
-    private static final String PARAMETER_VALUES_SEPARATOR = "=";
+    public static final String PARAMETERS_SEPARATOR = "&";
+    public static final String PARAMETER_VALUES_SEPARATOR = "=";
 
     private EditText uidET;
     private EditText apiKeyET;
@@ -89,9 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private List<Offer> offers = new ArrayList<>();
 
-    private OfferAdapater offerAdapater;
+    public OfferAdapater offerAdapater;
 
-    private OffersPullAsyncTask offersPullAsyncTask;
+    public OffersPullAsyncTask offersPullAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             params.put(UID_PARAM, uidET.getText().toString());
             params.put(APPID_PARAM, appIdET.getText().toString());
-            //params.put(PUB0_PARAM, pubOET.getText());
+            params.put(PUB0_PARAM, pubOET.getText());
             params.put(LOCALE_PARAM, LOCALE_PARAM_VALUE);
 
             //params.put(DEVICE_ID_PARAM, DEVICE_ID_PARAM_TEST);
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * build hashkey using sha1 algorith
+     * build hashkey using sha1 algorithm
      * using params and apikey
      */
     private void buildHashKey() {

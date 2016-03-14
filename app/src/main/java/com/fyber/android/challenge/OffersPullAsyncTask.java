@@ -23,6 +23,14 @@ import java.util.Map;
 
 public class OffersPullAsyncTask extends AsyncTask<String, Void, Void> {
 
+    public static final String TITLE = "title";
+    public static final String TEASER = "teaser";
+    public static final String PAYOUT = "payout";
+    public static final String THUMBNAIL_URL = "thumbnail";
+    public static final String LOWERS = "lowres";
+
+    public static final String OFFERS = "offers";
+
     String urlSpec;
 
     Map<String, Object> params;
@@ -60,6 +68,7 @@ public class OffersPullAsyncTask extends AsyncTask<String, Void, Void> {
 
             if(responsecode >= 400 && responsecode <= 499) {
 
+                //read error from the connection
                 InputStream inputStream = connection.getErrorStream();
 
                 int bytesRead = 0;
@@ -115,48 +124,46 @@ public class OffersPullAsyncTask extends AsyncTask<String, Void, Void> {
         return null;
     }
     protected void onPostExecute(Void unused) {
-        // NOTE: You can call UI Element here.
 
-        String OutputData = "";
         JSONObject jsonResponse;
 
-
         try {
-
-            /****** Creates a new JSONObject with name/value mappings from the JSON string. ********/
 
             if(response != null) {
 
                 jsonResponse = new JSONObject(response);
 
-                JSONArray offersArray = jsonResponse.optJSONArray("offers");
-
-                /*********** Process each JSON Node ************/
-
-                int lengthJsonArr = offersArray.length();
+                JSONArray offersArray = jsonResponse.optJSONArray(OFFERS);
 
                 List<Offer> offers = new ArrayList<>();
 
-                for (int i = 0; i < lengthJsonArr; i++) {
-                    /****** Get Object for each JSON node.***********/
-                    JSONObject jsonChildNode = offersArray.getJSONObject(i);
+                if(offersArray != null) {
 
-                    /******* Fetch offer values **********/
-                    String title = jsonChildNode.optString("title").toString();
-                    String teaser = jsonChildNode.optString("teaser").toString();
-                    String payout = jsonChildNode.optString("payout").toString();
-                    String thumbnail = jsonChildNode.getJSONObject("thumbnail").optString("lowres").toString();
+                    int lengthJsonArr = offersArray.length();
 
-                    Offer offer = new Offer();
-                    offer.setPayout(payout);
-                    offer.setTitle(title);
-                    offer.setTeaser(teaser);
-                    offer.setThumbnail(thumbnail);
+                    for (int i = 0; i < lengthJsonArr; i++) {
 
-                    offers.add(offer);
+                        JSONObject jsonChildNode = offersArray.getJSONObject(i);
+
+                        String title = jsonChildNode.optString(TITLE);
+                        String teaser = jsonChildNode.optString(TEASER);
+                        String payout = jsonChildNode.optString(PAYOUT);
+                        String thumbnailUrl = jsonChildNode.getJSONObject(THUMBNAIL_URL).optString(LOWERS);
+
+                        Offer offer = new Offer();
+                        offer.setPayout(payout);
+                        offer.setTitle(title);
+                        offer.setTeaser(teaser);
+                        offer.setThumbnailUrl(thumbnailUrl);
+
+                        offers.add(offer);
+                    }
                 }
 
                 offersLoadedCallback.setOffers(offers);
+            } else {
+                //reset with empty offers
+                offersLoadedCallback.setOffers(new ArrayList<Offer>());
             }
 
         } catch (JSONException e) {

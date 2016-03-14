@@ -69,7 +69,7 @@ public class OfferAdapater extends ArrayAdapter<Offer> {
         ImageView imageView = (ImageView) vi.findViewById(R.id.item_thumbnail);
 
         new DownloadImageTask(imageView)
-                .execute(offer.getThumbnail());
+                .execute(offer.getThumbnailUrl());
 
         return vi;
     }

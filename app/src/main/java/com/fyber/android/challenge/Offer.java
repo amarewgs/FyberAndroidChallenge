@@ -6,9 +6,20 @@ package com.fyber.android.challenge;
 public class Offer {
     private String title;
     private String teaser;
-    private String thumbnail;
+    private String thumbnailUrl;
     private String payout;
 
+
+    public Offer() {
+
+    }
+
+    public Offer(String title, String teaser, String thumbnailUrl, String payout) {
+        this.title = title;
+        this.teaser = teaser;
+        this.thumbnailUrl = thumbnailUrl;
+        this.payout = payout;
+    }
     public String getTitle() {
         return title;
     }
@@ -25,12 +36,12 @@ public class Offer {
         this.teaser = teaser;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getPayout() {
